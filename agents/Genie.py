@@ -5,7 +5,8 @@ from Config import LLM_CONFIG
 
 assistant = autogen.AssistantAgent(
     name="assistant",
-    llm_config=LLM_CONFIG
+    llm_config=LLM_CONFIG,
+    system_message="""You are a helpful code assistant who writes code and makes sure it works.""",
 )
 
 user_proxy = autogen.UserProxyAgent(
@@ -21,6 +22,6 @@ user_proxy = autogen.UserProxyAgent(
 
 chat_res = user_proxy.initiate_chat(
     assistant,
-    message="""How can i print a string""",
+    message="""Write a Python function that takes a list of numbers and returns the average of the numbers.""",
     summary_method="reflection_with_llm",
 )
